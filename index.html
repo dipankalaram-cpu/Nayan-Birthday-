@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Nayan</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-family:Courier New, monospace;
+    overflow:hidden;
+}
+
+/* TAP START OVERLAY */
+#tapStart{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#00ffcc;
+    font-size:24px;
+    font-weight:bold;
+    z-index:999;
+    backdrop-filter:blur(3px);
+}
+
+/* Main Box */
+.box{
+    padding:20px;
+    border:2px solid #00ffaa;
+    border-radius:20px;
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(9px);
+    box-shadow:0 0 25px #00ffaa;
+    animation: boxglow 5s infinite alternate;
+}
+
+@keyframes boxglow{
+    0%{ box-shadow:0 0 20px #00ffaa; }
+    25%{ box-shadow:0 0 25px #33ffcc; }
+    50%{ box-shadow:0 0 33px #44ffee; }
+    75%{ box-shadow:0 0 26px #11ffee; }
+    100%{ box-shadow:0 0 20px #00ffaa; }
+}
+
+/* PHOTO glow */
+img{
+    width:260px;
+    border-radius:20px;
+    margin-bottom:15px;
+    animation: photoglow 4s infinite alternate;
+}
+
+@keyframes photoglow{
+    0%{ box-shadow:0 0 20px #33ffaa; }
+    25%{ box-shadow:0 0 25px #55ffee; }
+    50%{ box-shadow:0 0 30px #33ccff; }
+    75%{ box-shadow:0 0 25px #33ffee; }
+    100%{ box-shadow:0 0 20px #33ffaa; }
+}
+
+h1{
+    color:#00ffcc;
+    margin:5px 0;
+    font-size:22px;
+}
+h2{
+    color:#33ffee;
+    margin:5px 0;
+}
+
+#type{
+    color:white;
+    font-size:17px;
+    min-height:60px;
+    margin-top:10px;
+}
+
+/* Floating hearts */
+.heart{
+    position:absolute;
+    color:#00ffaa;
+    font-size:25px;
+    animation: floatUp 4s linear infinite;
+    opacity:0.8;
+}
+@keyframes floatUp{
+    0%{transform:translateY(50px) scale(1); opacity:1;}
+    100%{transform:translateY(-600px) scale(1.5); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Tap to start -->
+<div id="tapStart">✨ TAP TO START ✨</div>
+
+<!-- Floating hearts -->
+<script>
+function hearts(){
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "💙";
+    h.style.left = Math.random()*100 + "vw";
+    h.style.animationDuration = (3 + Math.random()*3) + "s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(), 6000);
+}
+setInterval(hearts, 550);
+</script>
+
+<div class="box">
+    
+    <img src="Nayan.jpg" alt="Nayan Moni Bora">
+
+    <h1>🎉 Happy Birthday Nayan Moni Bora 🎂</h1>
+    <h2>🗓️ 2 January 2026</h2>
+
+    <p id="type"></p>
+</div>
+
+<script>
+// Typewriter text
+let text =
+"Nayan... 💙\n\
+College life me tum sabse acchi doston me se ek thi.\n\
+Project group, assignments, internship — sab me tum\n\
+saath thi, aur hamesha positive energy deti thi.\n\n\
+Tumhari dosti meri zindagi ka ek khoobsurat hissa hai.\n\
+Aaj ke din tumhara Birthday hai —\n\
+Tumhari zindagi hamesha khushi,\n\
+success aur pyaar se bhari rahe.\n\n\
+Happy Birthday, Dost! 💙✨";
+
+let i = 0;
+function typeWriter(){
+    if(i < text.length){
+        document.getElementById("type").innerHTML +=
+        text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 45);
+    }
+}
+
+// Audio + Tap handler
+let audio = new Audio("nayan.mp3");
+
+document.getElementById("tapStart").onclick = function(){
+    this.style.display = "none";
+    audio.play();
+    typeWriter();
+};
+</script>
+
+</body>
+</html>
